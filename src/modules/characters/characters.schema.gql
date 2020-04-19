@@ -1,0 +1,61 @@
+type MEMB_STAT {
+  ConnectStat: Float!
+}
+
+type Guild {
+  G_Name: String!
+  G_Mark: String
+  G_Score: Float!
+  G_Master: String!
+  G_Count: Float!
+  Number: Float!
+  G_Type: Float!
+  G_Rival: Float!
+  G_Union: Float!
+}
+
+type GuildMember {
+  Name: String!
+  G_Name: String!
+  G_Level: String!
+  G_Status: String!
+  guild: Guild
+}
+
+type Character {
+  Name: String!
+  cLevel: Float!
+  LevelUpPoint: Float!
+  Class: Float!
+  Experience: Float!
+  Strength: Float!
+  Dexterity: Float!
+  Vitality: Float!
+  Energy: Float!
+  Leadership: Float!
+  Inventory: String!
+  Money: Float!
+  MapNumber: Float!
+  MapPosX: Float!
+  MapPosY: Float!
+  PkCount: Float!
+  CtlCode: Float!
+  Resets: Float!
+  BanPost: Float!
+  IsMarried: Float!
+  MarryName: String!
+  QuestNumber: Float!
+  QuestMonsters: Float!
+  QuestInCurse: Float!
+  QuestInProgress: Float!
+  SkyEventWins: Float!
+  IsVip: Float!
+  VipExpirationTime: Float!
+  status: MEMB_STAT
+  guild_member: GuildMember
+}
+
+type Query {
+  character(name: String!): Character
+  characters(page: Float, perPage: Float, classes: [Float]): [Character]
+}

@@ -1,0 +1,9 @@
+type MEMB_INFO {
+  memb___id: String!
+  mail_addr: String!
+  admin_lvl: Float!
+}
+
+type Mutation {
+  createUser(username: String!, password: String!, email: String!): MEMB_INFO
+}

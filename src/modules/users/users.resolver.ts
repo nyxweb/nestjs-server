@@ -1,0 +1,16 @@
+import { Resolver, Args, Mutation } from '@nestjs/graphql';
+import { UsersService } from './users.service';
+import { createUserDto } from './dto/create-user.dto';
+
+// Models
+import { MEMB_INFO } from 'src/models/MEMB_INFO';
+
+@Resolver()
+export class UsersResolver {
+  constructor(private readonly usersService: UsersService) {}
+
+  @Mutation(() => MEMB_INFO)
+  async createUser(@Args() data: createUserDto) {
+    return await this.usersService.createUser(data);
+  }
+}

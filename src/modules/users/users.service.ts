@@ -2,9 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 
-// Models
-import { MEMB_INFO } from 'src/models/MEMB_INFO';
 import { createUserDto } from './dto/create-user.dto';
+import { MEMB_INFO } from 'models/MEMB_INFO';
 
 @Injectable()
 export class UsersService {
@@ -13,11 +12,7 @@ export class UsersService {
     private userModel: typeof MEMB_INFO,
   ) {}
 
-  async createUser({
-    username,
-    password,
-    email,
-  }: createUserDto): Promise<MEMB_INFO> {
+  async createUser({ username, password, email }: createUserDto): Promise<MEMB_INFO | null> {
     const check = await this.userModel.findOne({
       where: { [Op.or]: [{ memb___id: username }, { mail_addr: email }] },
     });

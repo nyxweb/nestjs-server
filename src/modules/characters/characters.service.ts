@@ -2,14 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 
-// DTOs
 import { getCharactersDto } from './dto/get-characters.dto';
-
-// Models
-import { Character } from 'src/models/Character';
-import { MEMB_STAT } from 'src/models/MEMB_STAT';
-import { Guild } from 'src/models/Guild';
-import { GuildMember } from 'src/models/GuildMember';
+import { Character } from 'models/Character';
+import { MEMB_STAT } from 'models/MEMB_STAT';
+import { Guild } from 'models/Guild';
+import { GuildMember } from 'models/GuildMember';
 
 @Injectable()
 export class CharactersService {
@@ -18,7 +15,7 @@ export class CharactersService {
     private characterModel: typeof Character,
   ) {}
 
-  async findOne(Name: string): Promise<Character> {
+  async findOne(Name: string): Promise<Character | null> {
     const character = await this.characterModel.findOne({
       where: { Name },
       include: [

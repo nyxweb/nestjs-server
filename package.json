@@ -1,8 +1,7 @@
 {
-  "name": "server",
+  "name": "nyxweb-server",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "author": "Dea7h",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -12,10 +11,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
-    "prettier": "prettier \"./**/*.{js,ts,json}\" --write",
-    "lint": "eslint \"src/**/*.{js,ts}\" --fix --quiet",
-    "precommit": "lint-staged"
+    "start:prod": "node dist/main"
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
@@ -25,7 +21,7 @@
     "@nestjs/sequelize": "^0.1.0",
     "apollo-server-express": "^2.12.0",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.11.1",
+    "class-validator": "^0.12.1",
     "graphql": "^15.0.0",
     "graphql-tools": "^5.0.0",
     "reflect-metadata": "^0.1.13",
@@ -44,30 +40,10 @@
     "@types/node": "^13.11.1",
     "@types/sequelize": "^4.28.8",
     "@types/validator": "^13.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.1.7",
-    "prettier": "^1.19.1",
-    "ts-loader": "^6.2.1",
+    "prettier": "^2.0.5",
+    "ts-loader": "^7.0.1",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn precommit"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,json,gql}": [
-      "prettier --write"
-    ],
-    "*.{js,ts}": [
-      "eslint"
-    ]
   }
 }

@@ -1,9 +1,8 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
+
 import { CharactersService } from './characters.service';
 import { getCharactersDto } from './dto/get-characters.dto';
-
-// Models
-import { Character } from 'src/models/Character';
+import { Character } from 'models/Character';
 
 @Resolver()
 export class CharactersResolver {

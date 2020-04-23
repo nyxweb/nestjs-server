@@ -59,7 +59,15 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "precommit"
+      "pre-commit": "yarn precommit"
     }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,gql}": [
+      "prettier --write"
+    ],
+    "*.{js,ts}": [
+      "eslint"
+    ]
   }
 }

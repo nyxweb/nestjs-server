@@ -8,13 +8,13 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "prestart": "npm run lint",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "prettier": "prettier \"./**/*.{js,ts,json}\" --write",
+    "lint": "eslint \"src/**/*.{js,ts}\" --fix --quiet",
     "precommit": "lint-staged"
   },
   "dependencies": {

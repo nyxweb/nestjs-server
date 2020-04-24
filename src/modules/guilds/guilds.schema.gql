@@ -1,0 +1,25 @@
+type Guild {
+  G_Name: String!
+  G_Mark: String
+  G_Score: Int!
+  G_Master: String!
+  G_Count: Int!
+  Number: Int!
+  G_Type: Int!
+  G_Rival: Int!
+  G_Union: Int!
+  members: [GuildMember]
+}
+
+type GuildMember {
+  Name: String!
+  G_Name: String!
+  G_Level: String!
+  G_Status: String!
+  guild: Guild
+}
+
+type Query {
+  guild(name: String!): Guild
+  guilds(page: Int, perPage: Int): [Guild]
+}

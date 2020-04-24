@@ -1,11 +1,5 @@
-import {
-  Table,
-  Column,
-  Model,
-  PrimaryKey,
-  // HasMany,
-} from 'sequelize-typescript';
-// import { GuildMember } from './GuildMember';
+import { Table, Column, Model, PrimaryKey, HasMany } from 'sequelize-typescript';
+import { GuildMember } from './GuildMember';
 
 @Table
 export class Guild extends Model<Guild> {
@@ -37,9 +31,9 @@ export class Guild extends Model<Guild> {
   @Column
   G_Union: number;
 
-  // @HasMany(() => GuildMember, { sourceKey: 'G_Name', foreignKey: 'G_Name' })
-  // members: GuildMember[];
+  @HasMany(() => GuildMember, { sourceKey: 'G_Name', foreignKey: 'G_Name' })
+  members: GuildMember[];
 
-  // @HasMany(() => Guild, { sourceKey: 'G_Union', foreignKey: 'G_Union' })
-  // alliance: Guild[];
+  @HasMany(() => Guild, { sourceKey: 'G_Union', foreignKey: 'G_Union' })
+  alliance: Guild[];
 }

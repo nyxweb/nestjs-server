@@ -1,7 +1,7 @@
 type MEMB_INFO {
   memb___id: String!
   mail_addr: String!
-  admin_lvl: Float!
+  admin_lvl: Int!
 }
 
 type Mutation {

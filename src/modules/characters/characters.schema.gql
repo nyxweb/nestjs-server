@@ -1,17 +1,17 @@
 type MEMB_STAT {
-  ConnectStat: Float!
+  ConnectStat: Int!
 }
 
 type Guild {
   G_Name: String!
   G_Mark: String
-  G_Score: Float!
+  G_Score: Int!
   G_Master: String!
-  G_Count: Float!
-  Number: Float!
-  G_Type: Float!
-  G_Rival: Float!
-  G_Union: Float!
+  G_Count: Int!
+  Number: Int!
+  G_Type: Int!
+  G_Rival: Int!
+  G_Union: Int!
 }
 
 type GuildMember {
@@ -24,38 +24,38 @@ type GuildMember {
 
 type Character {
   Name: String!
-  cLevel: Float!
-  LevelUpPoint: Float!
-  Class: Float!
-  Experience: Float!
-  Strength: Float!
-  Dexterity: Float!
-  Vitality: Float!
-  Energy: Float!
-  Leadership: Float!
+  cLevel: Int!
+  LevelUpPoint: Int!
+  Class: Int!
+  Experience: Int!
+  Strength: Int!
+  Dexterity: Int!
+  Vitality: Int!
+  Energy: Int!
+  Leadership: Int!
   Inventory: String!
-  Money: Float!
-  MapNumber: Float!
-  MapPosX: Float!
-  MapPosY: Float!
-  PkCount: Float!
-  CtlCode: Float!
-  Resets: Float!
-  BanPost: Float!
-  IsMarried: Float!
+  Money: Int!
+  MapNumber: Int!
+  MapPosX: Int!
+  MapPosY: Int!
+  PkCount: Int!
+  CtlCode: Int!
+  Resets: Int!
+  BanPost: Int!
+  IsMarried: Int!
   MarryName: String!
-  QuestNumber: Float!
-  QuestMonsters: Float!
-  QuestInCurse: Float!
-  QuestInProgress: Float!
-  SkyEventWins: Float!
-  IsVip: Float!
-  VipExpirationTime: Float!
+  QuestNumber: Int!
+  QuestMonsters: Int!
+  QuestInCurse: Int!
+  QuestInProgress: Int!
+  SkyEventWins: Int!
+  IsVip: Int!
+  VipExpirationTime: Int!
   status: MEMB_STAT
   guild_member: GuildMember
 }
 
 type Query {
   character(name: String!): Character
-  characters(page: Float, perPage: Float, classes: [Float]): [Character]
+  characters(page: Int, perPage: Int, classes: [Int]): [Character]
 }

@@ -10,6 +10,8 @@ export class GuildsService {
   constructor(
     @InjectModel(Guild)
     private guildModel: typeof Guild,
+    @InjectModel(GuildMember)
+    private guildMemberModel: typeof GuildMember,
   ) {}
 
   async findOne(name: string): Promise<Guild | null> {
@@ -35,7 +37,7 @@ export class GuildsService {
       ],
       include: [
         {
-          model: GuildMember,
+          model: this.guildMemberModel,
         },
       ],
     });

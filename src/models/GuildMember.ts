@@ -1,4 +1,6 @@
-import { Table, Column, Model, PrimaryKey } from 'sequelize-typescript';
+import { Table, Column, Model, PrimaryKey, BelongsTo } from 'sequelize-typescript';
+import { Character } from './Character';
+import { Guild } from './Guild';
 
 @Table
 export class GuildMember extends Model<GuildMember> {
@@ -15,6 +17,9 @@ export class GuildMember extends Model<GuildMember> {
   @Column
   G_Status: number;
 
-  // @HasOne(() => Character, { sourceKey: 'Name', foreignKey: 'Name' })
+  @BelongsTo(() => Guild, { foreignKey: 'G_Name', targetKey: 'G_Name' })
+  guild: Guild;
+
+  // @BelongsTo(() => Character, { foreignKey: 'Name', targetKey: 'Name' })
   // character: Character;
 }

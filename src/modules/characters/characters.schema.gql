@@ -55,7 +55,12 @@ type Character {
   guild_member: GuildMember
 }
 
+type CharactersResult {
+  count: Int
+  rows: [Character]
+}
+
 type Query {
   character(name: String!): Character
-  characters(page: Int, perPage: Int, classes: [Int]): [Character]
+  characters(page: Int, perPage: Int, classes: [Int]): CharactersResult
 }

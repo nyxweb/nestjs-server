@@ -40,8 +40,8 @@ export class CharactersService {
     page = 1,
     perPage = 20,
     classes = [0, 1, 2, 16, 17, 18, 32, 33, 34, 48, 49, 64, 65],
-  }: getCharactersDto): Promise<Array<Character>> {
-    const characters = await this.characterModel.findAll({
+  }: getCharactersDto): Promise<{ count: number; rows: Array<Character> }> {
+    const characters = await this.characterModel.findAndCountAll({
       where: {
         Class: {
           [Op.in]: classes,

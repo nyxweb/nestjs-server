@@ -27,8 +27,11 @@ export class GuildsService {
     return guild;
   }
 
-  async findMany({ page = 1, perPage = 20 }: getGuildsDto): Promise<Array<Guild>> {
-    const guilds = await this.guildModel.findAll({
+  async findMany({
+    page = 1,
+    perPage = 20,
+  }: getGuildsDto): Promise<{ count: number; rows: Array<Guild> }> {
+    const guilds = await this.guildModel.findAndCountAll({
       limit: perPage,
       offset: (page - 1) * perPage,
       order: [

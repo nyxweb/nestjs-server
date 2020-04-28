@@ -19,7 +19,12 @@ type GuildMember {
   guild: Guild
 }
 
+type GuildsResult {
+  rows: [Guild]
+  count: Int
+}
+
 type Query {
   guild(name: String!): Guild
-  guilds(page: Int, perPage: Int): [Guild]
+  guilds(page: Int, perPage: Int): GuildsResult
 }

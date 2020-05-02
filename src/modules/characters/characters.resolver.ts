@@ -17,4 +17,9 @@ export class CharactersResolver {
   async characters(@Args() data: getCharactersDto) {
     return await this.charactersService.findMany(data);
   }
+
+  @Query(() => [Character])
+  async topHof() {
+    return await this.charactersService.topHof();
+  }
 }

@@ -71,4 +71,74 @@ export class CharactersService {
 
     return characters;
   }
+
+  async topHof(): Promise<Array<Character | null>> {
+    const order: Array<any> = [
+      ['HOFWins', 'DESC'],
+      ['Resets', 'DESC'],
+      ['cLevel', 'DESC'],
+    ];
+
+    const sm = await this.characterModel.findOne({
+      order,
+      where: {
+        Class: { [Op.between]: [0, 10] },
+      },
+      include: [
+        {
+          model: MEMB_STAT,
+        },
+      ],
+    });
+
+    const bk = await this.characterModel.findOne({
+      order,
+      where: {
+        Class: { [Op.between]: [16, 20] },
+      },
+      include: [
+        {
+          model: MEMB_STAT,
+        },
+      ],
+    });
+
+    const elf = await this.characterModel.findOne({
+      order,
+      where: {
+        Class: { [Op.between]: [32, 40] },
+      },
+      include: [
+        {
+          model: MEMB_STAT,
+        },
+      ],
+    });
+
+    const mg = await this.characterModel.findOne({
+      order,
+      where: {
+        Class: { [Op.between]: [48, 50] },
+      },
+      include: [
+        {
+          model: MEMB_STAT,
+        },
+      ],
+    });
+
+    const dl = await this.characterModel.findOne({
+      order,
+      where: {
+        Class: { [Op.between]: [64, 70] },
+      },
+      include: [
+        {
+          model: MEMB_STAT,
+        },
+      ],
+    });
+
+    return [sm, bk, elf, mg, dl];
+  }
 }

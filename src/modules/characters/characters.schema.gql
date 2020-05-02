@@ -35,7 +35,7 @@ type Character {
   Vitality: Int!
   Energy: Int!
   Leadership: Int!
-  Inventory: String!
+  Inventory: Buffer!
   Money: Int!
   MapNumber: Int!
   MapPosX: Int!
@@ -53,6 +53,7 @@ type Character {
   SkyEventWins: Int!
   IsVip: Int!
   VipExpirationTime: Int!
+  HOFWins: Int!
   status: MEMB_STAT
   guild_member: GuildMember
 }
@@ -65,4 +66,5 @@ type CharactersResult {
 type Query {
   character(name: String!): Character
   characters(page: Int, perPage: Int, classes: [Int]): CharactersResult
+  topHof: [Character]
 }

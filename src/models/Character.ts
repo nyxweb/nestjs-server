@@ -92,6 +92,9 @@ export class Character extends Model<Character> {
   @Column
   VipExpirationTime: number;
 
+  @Column
+  HOFWins: number;
+
   @HasOne(() => MEMB_STAT, { sourceKey: 'AccountID', foreignKey: 'memb___id' })
   status: MEMB_STAT;
 

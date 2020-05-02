@@ -1,4 +1,10 @@
-import { Table, Column, Model, PrimaryKey, HasMany } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  PrimaryKey,
+  HasMany,
+} from 'sequelize-typescript';
 import { GuildMember } from './GuildMember';
 
 @Table

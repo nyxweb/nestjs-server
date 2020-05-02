@@ -31,20 +31,29 @@ export class GuildsService {
     page = 1,
     perPage = 20,
   }: getGuildsDto): Promise<{ count: number; rows: Array<Guild> }> {
-    const guilds = await this.guildModel.findAndCountAll({
-      limit: perPage,
-      offset: (page - 1) * perPage,
-      order: [
-        ['G_Score', 'DESC'],
-        ['G_Name', 'ASC'],
-      ],
-      include: [
-        {
-          model: this.guildMemberModel,
-        },
-      ],
-    });
+    const guilds: any = await this.guildModel.sequelize!.query(
+      `SELECT
+        G_Name, G_Mark, G_Score, G_Master,
+        (SELECT SUM(Resets) FROM Character
+        LEFT JOIN GuildMember ON Character.Name = GuildMember.Name
+        WHERE GuildMember.G_Name = Guild.G_Name) AS TotalResets,
+        (SELECT COUNT(*) FROM Character
+        LEFT JOIN GuildMember ON Character.Name = GuildMember.Name
+        WHERE GuildMember.G_Name = Guild.G_Name) AS TotalMembers
+      FROM
+        Guild
+      ORDER BY
+        TotalResets DESC
+      OFFSET ${(page - 1) * perPage} ROWS
+      FETCH NEXT ${perPage} ROWS ONLY`,
+      { type: 'SELECT' },
+    );
 
-    return guilds;
+    const guildsCount = await this.guildModel.count();
+
+    return {
+      count: guildsCount,
+      rows: guilds,
+    };
   }
 }

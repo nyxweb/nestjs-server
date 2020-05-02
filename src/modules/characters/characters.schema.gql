@@ -1,10 +1,12 @@
+scalar Buffer
+
 type MEMB_STAT {
   ConnectStat: Int!
 }
 
 type Guild {
   G_Name: String!
-  G_Mark: String
+  G_Mark: Buffer!
   G_Score: Int!
   G_Master: String!
   G_Count: Int!

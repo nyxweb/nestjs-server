@@ -1,6 +1,8 @@
+scalar Buffer
+
 type Guild {
   G_Name: String!
-  G_Mark: String
+  G_Mark: Buffer!
   G_Score: Int!
   G_Master: String!
   G_Count: Int!
@@ -8,7 +10,8 @@ type Guild {
   G_Type: Int!
   G_Rival: Int!
   G_Union: Int!
-  members: [GuildMember]
+  TotalResets: Int!
+  TotalMembers: Int!
 }
 
 type GuildMember {

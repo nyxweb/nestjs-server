@@ -63,8 +63,23 @@ type CharactersResult {
   rows: [Character]
 }
 
+enum OrderType {
+  DESC
+  ASC
+  Name
+  Resets
+  cLevel
+  HOFWins
+  Money
+}
+
 type Query {
   character(name: String!): Character
-  characters(page: Int, perPage: Int, classes: [Int]): CharactersResult
+  characters(
+    page: Int
+    perPage: Int
+    classes: [Int]
+    order: [[OrderType]]
+  ): CharactersResult
   topHof: [Character]
 }

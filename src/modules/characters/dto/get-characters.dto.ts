@@ -1,4 +1,5 @@
 import { IsInt, Min, Max, IsIn, IsOptional } from 'class-validator';
+import { OrderItem } from 'sequelize';
 
 export class getCharactersDto {
   @IsOptional()
@@ -16,4 +17,7 @@ export class getCharactersDto {
   @IsOptional()
   @IsIn([0, 1, 2, 16, 17, 18, 32, 33, 34, 48, 49, 64, 65], { each: true })
   readonly classes: number[];
+
+  @IsOptional()
+  readonly order: OrderItem[];
 }

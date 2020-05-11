@@ -40,7 +40,24 @@ export class CharactersService {
     page = 1,
     perPage = 20,
     classes = [0, 1, 2, 16, 17, 18, 32, 33, 34, 48, 49, 64, 65],
+    order = [
+      ['Resets', 'DESC'],
+      ['cLevel', 'DESC'],
+      ['HOFWins', 'DESC'],
+      ['Name', 'ASC'],
+    ],
   }: getCharactersDto): Promise<{ count: number; rows: Array<Character> }> {
+    order.forEach((o: any) => {
+      if (['ASC', 'DESC'].includes(o[0]) || !['ASC', 'DESC'].includes(o[1])) {
+        order = [
+          ['Resets', 'DESC'],
+          ['cLevel', 'DESC'],
+          ['HOFWins', 'DESC'],
+          ['Name', 'ASC'],
+        ];
+      }
+    });
+
     const characters = await this.characterModel.findAndCountAll({
       where: {
         Class: {
@@ -49,11 +66,7 @@ export class CharactersService {
       },
       limit: perPage,
       offset: (page - 1) * perPage,
-      order: [
-        ['Resets', 'DESC'],
-        ['cLevel', 'DESC'],
-        ['Name', 'ASC'],
-      ],
+      order,
       include: [
         {
           model: MEMB_STAT,

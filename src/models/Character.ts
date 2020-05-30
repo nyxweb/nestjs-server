@@ -1,103 +1,103 @@
-import { Column, Model, Table, PrimaryKey, HasOne } from 'sequelize-typescript';
-import { MEMB_STAT } from './MEMB_STAT';
-import { GuildMember } from './GuildMember';
+import { Column, Model, Table, PrimaryKey, HasOne } from 'sequelize-typescript'
+import { MEMB_STAT } from './MEMB_STAT'
+import { GuildMember } from './GuildMember'
 
 @Table
 export class Character extends Model<Character> {
   @PrimaryKey
   @Column
-  AccountID: string;
+  AccountID: string
 
   @Column
-  Name: string;
+  Name: string
 
   @Column
-  cLevel: number;
+  cLevel: number
 
   @Column
-  LevelUpPoint: number;
+  LevelUpPoint: number
 
   @Column
-  Class: number;
+  Class: number
 
   @Column
-  Experience: number;
+  Experience: number
 
   @Column
-  Strength: number;
+  Strength: number
 
   @Column
-  Dexterity: number;
+  Dexterity: number
 
   @Column
-  Vitality: number;
+  Vitality: number
 
   @Column
-  Energy: number;
+  Energy: number
 
   @Column
-  Leadership: number;
+  Leadership: number
 
   @Column
-  Inventory: BinaryType;
+  Inventory: BinaryType
 
   @Column
-  Money: number;
+  Money: number
 
   @Column
-  MapNumber: number;
+  MapNumber: number
 
   @Column
-  MapPosX: number;
+  MapPosX: number
 
   @Column
-  MapPosY: number;
+  MapPosY: number
 
   @Column
-  PkCount: number;
+  PkCount: number
 
   @Column
-  CtlCode: number;
+  CtlCode: number
 
   @Column
-  Resets: number;
+  Resets: number
 
   @Column
-  BanPost: number;
+  BanPost: number
 
   @Column
-  IsMarried: number;
+  IsMarried: number
 
   @Column
-  MarryName: string;
+  MarryName: string
 
   @Column
-  QuestNumber: number;
+  QuestNumber: number
 
   @Column
-  QuestMonsters: number;
+  QuestMonsters: number
 
   @Column
-  QuestInCurse: number;
+  QuestInCurse: number
 
   @Column
-  QuestInProgress: number;
+  QuestInProgress: number
 
   @Column
-  SkyEventWins: number;
+  SkyEventWins: number
 
   @Column
-  IsVip: number;
+  IsVip: number
 
   @Column
-  VipExpirationTime: number;
+  VipExpirationTime: number
 
   @Column
-  HOFWins: number;
+  HOFWins: number
 
   @HasOne(() => MEMB_STAT, { sourceKey: 'AccountID', foreignKey: 'memb___id' })
-  status: MEMB_STAT;
+  status: MEMB_STAT
 
   @HasOne(() => GuildMember, { sourceKey: 'Name', foreignKey: 'Name' })
-  guild_member: GuildMember;
+  guild_member: GuildMember
 }

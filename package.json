@@ -11,7 +11,9 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+    "prettier": "prettier \"./**/*.{js,json,ts}\" --write",
+    "lint": "eslint \"./src/**/*.{js,ts}\""
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
@@ -26,7 +28,6 @@
     "graphql-tools": "^5.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4",
     "sequelize": "^5.21.6",
     "sequelize-typescript": "^1.1.0",
     "tedious": "^8.2.0",
@@ -40,10 +41,22 @@
     "@types/node": "^13.11.1",
     "@types/sequelize": "^4.28.8",
     "@types/validator": "^13.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "eslint": "^7.1.0",
+    "lint-staged": "^10.2.7",
     "prettier": "^2.0.5",
     "ts-loader": "^7.0.1",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
+  },
+  "lint-staged": {
+    "*.{js,json,css,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint"
+    ]
   }
 }

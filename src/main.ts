@@ -1,15 +1,15 @@
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core'
 
-import { AppModule } from 'app.module';
+import { AppModule } from 'app.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  const app = await NestFactory.create(AppModule)
+  app.useGlobalPipes(new ValidationPipe())
 
-  await app.listen(5000);
+  await app.listen(5000)
 
-  console.log(`\n * Application is running on: ${await app.getUrl()} * \n`);
+  console.log(`\n * Application is running on: ${await app.getUrl()} * \n`)
 }
 
-bootstrap();
+bootstrap()

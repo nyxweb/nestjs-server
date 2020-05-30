@@ -1,17 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/sequelize'
+import { QueryTypes } from 'sequelize'
 
-import { getGuildsDto } from './dto/get-guilds.dto';
-import { Guild } from 'models/Guild';
-import { GuildMember } from 'models/GuildMember';
+import { getGuildsDto } from './dto/get-guilds.dto'
+import { Guild } from 'models/Guild'
+import { GuildMember } from 'models/GuildMember'
 
 @Injectable()
 export class GuildsService {
   constructor(
     @InjectModel(Guild)
-    private guildModel: typeof Guild,
-    @InjectModel(GuildMember)
-    private guildMemberModel: typeof GuildMember,
+    private guildModel: typeof Guild // @InjectModel(GuildMember) // private guildMemberModel: typeof GuildMember
   ) {}
 
   async findOne(name: string): Promise<Guild | null> {
@@ -19,19 +18,19 @@ export class GuildsService {
       where: { G_Name: name },
       include: [
         {
-          model: GuildMember,
-        },
-      ],
-    });
+          model: GuildMember
+        }
+      ]
+    })
 
-    return guild;
+    return guild
   }
 
   async findMany({
     page = 1,
-    perPage = 20,
+    perPage = 20
   }: getGuildsDto): Promise<{ count: number; rows: Array<Guild> }> {
-    const guilds: any = await this.guildModel.sequelize!.query(
+    const guilds = await this.guildModel.sequelize!.query<Guild>(
       `SELECT
         G_Name, G_Mark, G_Score, G_Master,
         (SELECT SUM(Resets) FROM Character
@@ -46,14 +45,14 @@ export class GuildsService {
         TotalResets DESC
       OFFSET ${(page - 1) * perPage} ROWS
       FETCH NEXT ${perPage} ROWS ONLY`,
-      { type: 'SELECT' },
-    );
+      { type: QueryTypes.SELECT }
+    )
 
-    const guildsCount = await this.guildModel.count();
+    const guildsCount = await this.guildModel.count()
 
     return {
       count: guildsCount,
-      rows: guilds,
-    };
+      rows: guilds
+    }
   }
 }

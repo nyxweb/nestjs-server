@@ -1,8 +1,8 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Resolver, Query, Args } from '@nestjs/graphql'
 
-import { CharactersService } from './characters.service';
-import { getCharactersDto } from './dto/get-characters.dto';
-import { Character } from 'models/Character';
+import { CharactersService } from './characters.service'
+import { getCharactersDto } from './dto/get-characters.dto'
+import { Character } from 'models/Character'
 
 @Resolver()
 export class CharactersResolver {
@@ -10,16 +10,16 @@ export class CharactersResolver {
 
   @Query(() => Character)
   async character(@Args('name') name: string) {
-    return await this.charactersService.findOne(name);
+    return await this.charactersService.findOne(name)
   }
 
   @Query(() => [Character])
   async characters(@Args() data: getCharactersDto) {
-    return await this.charactersService.findMany(data);
+    return await this.charactersService.findMany(data)
   }
 
   @Query(() => [Character])
   async topHof() {
-    return await this.charactersService.topHof();
+    return await this.charactersService.topHof()
   }
 }

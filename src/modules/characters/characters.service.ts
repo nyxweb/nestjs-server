@@ -1,18 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { Op } from 'sequelize';
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/sequelize'
+import { Op, OrderItem } from 'sequelize'
 
-import { getCharactersDto } from './dto/get-characters.dto';
-import { Character } from 'models/Character';
-import { MEMB_STAT } from 'models/MEMB_STAT';
-import { Guild } from 'models/Guild';
-import { GuildMember } from 'models/GuildMember';
+import { getCharactersDto } from './dto/get-characters.dto'
+import { Character } from 'models/Character'
+import { MEMB_STAT } from 'models/MEMB_STAT'
+import { Guild } from 'models/Guild'
+import { GuildMember } from 'models/GuildMember'
 
 @Injectable()
 export class CharactersService {
   constructor(
     @InjectModel(Character)
-    private characterModel: typeof Character,
+    private characterModel: typeof Character
   ) {}
 
   async findOne(Name: string): Promise<Character | null> {
@@ -20,20 +20,20 @@ export class CharactersService {
       where: { Name },
       include: [
         {
-          model: MEMB_STAT,
+          model: MEMB_STAT
         },
         {
           model: GuildMember,
           include: [
             {
-              model: Guild,
-            },
-          ],
-        },
-      ],
-    });
+              model: Guild
+            }
+          ]
+        }
+      ]
+    })
 
-    return character;
+    return character
   }
 
   async findMany({
@@ -44,114 +44,103 @@ export class CharactersService {
       ['Resets', 'DESC'],
       ['cLevel', 'DESC'],
       ['HOFWins', 'DESC'],
-      ['Name', 'ASC'],
-    ],
+      ['Name', 'ASC']
+    ]
   }: getCharactersDto): Promise<{ count: number; rows: Array<Character> }> {
-    order.forEach((o: any) => {
-      if (['ASC', 'DESC'].includes(o[0]) || !['ASC', 'DESC'].includes(o[1])) {
-        order = [
-          ['Resets', 'DESC'],
-          ['cLevel', 'DESC'],
-          ['HOFWins', 'DESC'],
-          ['Name', 'ASC'],
-        ];
-      }
-    });
-
     const characters = await this.characterModel.findAndCountAll({
       where: {
         Class: {
-          [Op.in]: classes,
-        },
+          [Op.in]: classes
+        }
       },
       limit: perPage,
       offset: (page - 1) * perPage,
       order,
       include: [
         {
-          model: MEMB_STAT,
+          model: MEMB_STAT
         },
         {
           model: GuildMember,
           include: [
             {
-              model: Guild,
-            },
-          ],
-        },
-      ],
-    });
+              model: Guild
+            }
+          ]
+        }
+      ]
+    })
 
-    return characters;
+    return characters
   }
 
   async topHof(): Promise<Array<Character | null>> {
-    const order: Array<any> = [
+    const order: OrderItem[] = [
       ['HOFWins', 'DESC'],
       ['Resets', 'DESC'],
-      ['cLevel', 'DESC'],
-    ];
+      ['cLevel', 'DESC']
+    ]
 
     const sm = await this.characterModel.findOne({
       order,
       where: {
-        Class: { [Op.between]: [0, 10] },
+        Class: { [Op.between]: [0, 10] }
       },
       include: [
         {
-          model: MEMB_STAT,
-        },
-      ],
-    });
+          model: MEMB_STAT
+        }
+      ]
+    })
 
     const bk = await this.characterModel.findOne({
       order,
       where: {
-        Class: { [Op.between]: [16, 20] },
+        Class: { [Op.between]: [16, 20] }
       },
       include: [
         {
-          model: MEMB_STAT,
-        },
-      ],
-    });
+          model: MEMB_STAT
+        }
+      ]
+    })
 
     const elf = await this.characterModel.findOne({
       order,
       where: {
-        Class: { [Op.between]: [32, 40] },
+        Class: { [Op.between]: [32, 40] }
       },
       include: [
         {
-          model: MEMB_STAT,
-        },
-      ],
-    });
+          model: MEMB_STAT
+        }
+      ]
+    })
 
     const mg = await this.characterModel.findOne({
       order,
       where: {
-        Class: { [Op.between]: [48, 50] },
+        Class: { [Op.between]: [48, 50] }
       },
       include: [
         {
-          model: MEMB_STAT,
-        },
-      ],
-    });
+          model: MEMB_STAT
+        }
+      ]
+    })
 
     const dl = await this.characterModel.findOne({
       order,
       where: {
-        Class: { [Op.between]: [64, 70] },
+        Class: { [Op.between]: [64, 70] }
       },
       include: [
         {
-          model: MEMB_STAT,
-        },
-      ],
-    });
+          model: MEMB_STAT
+        }
+      ]
+    })
 
-    return [sm, bk, elf, mg, dl];
+    return [sm, bk, elf, mg, dl]
   }
 }

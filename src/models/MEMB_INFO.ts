@@ -1,77 +1,77 @@
-import { Column, Model, Table, PrimaryKey } from 'sequelize-typescript';
+import { Column, Model, Table, PrimaryKey } from 'sequelize-typescript'
 
 @Table
 export class MEMB_INFO extends Model<MEMB_INFO> {
   @Column
-  memb_guid: number;
+  memb_guid: number
 
   @PrimaryKey
   @Column
-  memb___id: string;
+  memb___id: string
 
   @Column
-  memb__pwd: string;
+  memb__pwd: string
 
   @Column
-  memb_name: string;
+  memb_name: string
 
   @Column({ defaultValue: '' })
-  sno__numb: string;
+  sno__numb: string
 
   @Column
-  post_code?: string;
+  post_code?: string
 
   @Column
-  addr_info?: string;
+  addr_info?: string
 
   @Column
-  addr_deta?: string;
+  addr_deta?: string
 
   @Column
-  tel__numb?: string;
+  tel__numb?: string
 
   @Column
-  phon_numb?: string;
+  phon_numb?: string
 
   @Column
-  mail_addr?: string;
+  mail_addr?: string
 
   @Column
-  fpas_ques?: string;
+  fpas_ques?: string
 
   @Column
-  fpas_answ?: string;
+  fpas_answ?: string
 
   @Column
-  job__code?: string;
+  job__code?: string
 
   @Column
-  appl_days?: string;
+  appl_days?: string
 
   @Column
-  modi_days?: string;
+  modi_days?: string
 
   @Column
-  out__days?: string;
+  out__days?: string
 
   @Column
-  true_days?: string;
+  true_days?: string
 
   @Column
-  mail_chek?: number;
+  mail_chek?: number
 
   @Column({ defaultValue: 0 })
-  bloc_code: number;
+  bloc_code: number
 
   @Column({ defaultValue: 0 })
-  ctl1_code: number;
+  ctl1_code: number
 
   @Column({ defaultValue: 0 })
-  IsVip: number;
+  IsVip: number
 
   @Column({ defaultValue: 0 })
-  admin_lvl: number;
+  admin_lvl: number
 
   @Column
-  jwt_token?: string;
+  jwt_token?: string
 }

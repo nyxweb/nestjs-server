@@ -1,24 +1,30 @@
-import { Table, Column, Model, PrimaryKey, BelongsTo } from 'sequelize-typescript';
-import { Character } from './Character';
-import { Guild } from './Guild';
+import {
+  Table,
+  Column,
+  Model,
+  PrimaryKey,
+  BelongsTo
+} from 'sequelize-typescript'
+// import { Character } from './Character'
+import { Guild } from './Guild'
 
 @Table
 export class GuildMember extends Model<GuildMember> {
   @PrimaryKey
   @Column
-  Name: string;
+  Name: string
 
   @Column
-  G_Name: string;
+  G_Name: string
 
   @Column
-  G_Level: number;
+  G_Level: number
 
   @Column
-  G_Status: number;
+  G_Status: number
 
   @BelongsTo(() => Guild, { foreignKey: 'G_Name', targetKey: 'G_Name' })
-  guild: Guild;
+  guild: Guild
 
   // @BelongsTo(() => Character, { foreignKey: 'Name', targetKey: 'Name' })
   // character: Character;

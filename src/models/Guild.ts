@@ -1,45 +1,39 @@
-import {
-  Table,
-  Column,
-  Model,
-  PrimaryKey,
-  HasMany,
-} from 'sequelize-typescript';
-import { GuildMember } from './GuildMember';
+import { Table, Column, Model, PrimaryKey, HasMany } from 'sequelize-typescript'
+import { GuildMember } from './GuildMember'
 
 @Table
 export class Guild extends Model<Guild> {
   @PrimaryKey
   @Column
-  G_Name: string;
+  G_Name: string
 
   @Column
-  G_Mark: BinaryType;
+  G_Mark: BinaryType
 
   @Column
-  G_Score: number;
+  G_Score: number
 
   @Column
-  G_Master: string;
+  G_Master: string
 
   @Column
-  G_Count: number;
+  G_Count: number
 
   @Column
-  Number: number;
+  Number: number
 
   @Column
-  G_Type: number;
+  G_Type: number
 
   @Column
-  G_Rival: number;
+  G_Rival: number
 
   @Column
-  G_Union: number;
+  G_Union: number
 
   @HasMany(() => GuildMember, { sourceKey: 'G_Name', foreignKey: 'G_Name' })
-  members: GuildMember[];
+  members: GuildMember[]
 
   @HasMany(() => Guild, { sourceKey: 'G_Union', foreignKey: 'G_Union' })
-  alliance: Guild[];
+  alliance: Guild[]
 }
